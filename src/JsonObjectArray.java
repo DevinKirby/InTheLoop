@@ -23,14 +23,14 @@ public class JsonObjectArray {
 		}
 		return locations;
 
-		// for (Location location : locations) {
-		// System.out.println(location.getName());
-		// System.out.println(location.getAddress());
-		// System.out.println(location.getId());
-		// System.out.println(location.getLat());
-		// System.out.println(location.getLng());
-		// System.out.println();
-		// }
+//		 for (Location location : locations) {
+//		 System.out.println(location.getName());
+//		 System.out.println(location.getAddress());
+//		 System.out.println(location.getId());
+//		 System.out.println(location.getLat());
+//		 System.out.println(location.getLng());
+//		 System.out.println();
+//		 }
 
 	}
 
