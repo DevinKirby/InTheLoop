@@ -15,7 +15,7 @@ public class JsonObjectArray {
 			JSONObject jsonLocObj = jsonGeoObj.getJSONObject("location");
 			Location location = new Location();
 			location.setName(childJSONObject.getString("name"));
-			location.setAddress(childJSONObject.getString("formatted_address"));
+			location.setAddress(childJSONObject.getString("vicinity"));
 			location.setId(childJSONObject.getString("id"));
 			location.setLat(jsonLocObj.getDouble("lat"));
 			location.setLng(jsonLocObj.getDouble("lng"));

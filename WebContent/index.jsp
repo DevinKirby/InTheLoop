@@ -9,9 +9,9 @@
     <p><i>${message}</i></p>
 </c:if>
 
-<form action="DummyServlet" method="post">
+<form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
-    <select name="stationID" value="Grand Circus">
+    <select name="stationID" value="Grand Circus Park">
     	<option value="1">Times Square</option>
     	<option value="2">Grand Circus Park</option>
     	<option value="3">Broadway</option>
@@ -27,7 +27,7 @@
     	<option value="13">Michigan Ave.</option>
     </select><br>
     <label>Keyword:</label>
-    <input type="text" name="keyword" value="pizza?"/><br>
+    <input type="text" name="keyword" value=""/><br>
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
