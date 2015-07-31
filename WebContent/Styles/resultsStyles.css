@@ -1,0 +1,16 @@
+#map {
+  height: 400px;
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+  
+}
+.locations{
+  height: 400px;
+  width: 300px;  
+  border: 3px solid red;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: top;  
+  overflow: scroll;
+}
