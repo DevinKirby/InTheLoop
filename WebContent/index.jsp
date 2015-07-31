@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <title>PizzaMover!</title>
-<h1>Welcome to the Grand Circus Pizza Mover!</h1>
+<h1>Welcome<c:out value= "${name}"/> to the Grand Circus Pizza Mover!</h1>
 <h4>The application for the people mover.</h4>
 
 
@@ -30,5 +30,22 @@
     <input type="text" name="keyword" value=""/><br>
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
+    
 </form>
+<form action="DatabaseServlet" method="post">
+<p>Sign in to save results</p>
+<label>Email:</label>
+     <input type="text" name="email" value=""/><br>
+    <label>&nbsp;</label>
+<label>Name:</label>
+     <input type="text" name="name" value=""/><br>
+    <label>&nbsp;</label>
+    <input type="submit" value="Log in" class="margin_left">
+    </form>
+<p><c:out value= "${x}"/></p>
+
+    
+    
+    
+    
 

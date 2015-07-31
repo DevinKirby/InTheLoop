@@ -12,5 +12,7 @@
        <p><c:out value="${location.name}" /></p>
        <p><c:out value="${location.address}" /></p>
 </c:forEach>
+
+<h1><c:out value= "${email}"/></h1>
 </body>
 </html>
