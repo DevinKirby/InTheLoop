@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<head><link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16"></head>
 <title>PizzaMover!</title>
 <h1>Welcome to the Grand Circus Pizza Mover!</h1>
 <h4>The application for the people mover.</h4>
