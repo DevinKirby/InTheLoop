@@ -44,9 +44,17 @@ public class PizzaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keyword = request.getParameter("keyword");
+		keyword = keyword.trim();
+		keyword = keyword.replaceAll("\\s+", "%20");
 		String stationID = request.getParameter("stationID");
-		HashMap<String, String> searchAddress = getStationAddress();
+		request.setAttribute("stationName", stationID);
+		HashMap<String, String> searchAddress = getStationAddress();		
 		String stationAddress = searchAddress.get(stationID);
+		String stationLat = stationAddress.substring(0, 9);
+		String stationLng = stationAddress.substring(10);
+		String formattedCoords = stationLat + ", " + stationLng;
+		request.setAttribute("stationCoords", formattedCoords);
+		System.out.println(formattedCoords);
 		System.out.println(stationAddress);
 		System.out.println(keyword);
 		ArrayList<Location> locations; 
@@ -55,23 +63,9 @@ public class PizzaServlet extends HttpServlet {
 			locations = JsonObjectArray.getLocationArray(googlePlaces);
 			System.out.println(googlePlaces);
 			request.setAttribute("location", locations);
-//			for (Location location : locations) {
-//				request.setAttribute("name", location.getName());
-//				request.setAttribute("address", location.getAddress());
-//				request.setAttribute("id", location.getId());
-//				request.setAttribute("lat", location.getLat());
-//				request.setAttribute("lng", location.getLng());
-//				
-//				System.out.println(location.getAddress());
-//				System.out.println(location.getId());
-//				System.out.println(location.getLat());
-//				System.out.println(location.getLng());
-//				System.out.println();
-//			}
+
 		
-			Location ourLocation = new Location();
-			String newLocation = ourLocation.getName(); 
-			request.setAttribute("newLocation", newLocation);
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -81,19 +75,19 @@ public class PizzaServlet extends HttpServlet {
 
 	private HashMap<String, String> getStationAddress() {
 		HashMap<String, String> stationAddresses = new HashMap<>();
-		stationAddresses.put("1", "42.333665,-83.052125");
-		stationAddresses.put("2", "42.335855,-83.050510");
-		stationAddresses.put("3", "42.335437,-83.048204");
-		stationAddresses.put("4", "42.333766,-83.046394");
-		stationAddresses.put("5", "42.334909,-83.042425");
-		stationAddresses.put("6", "42.333282,-83.041168");
-		stationAddresses.put("7", "42.330147,-83.040208");
-		stationAddresses.put("8", "42.330250,-83.041995");
-		stationAddresses.put("9", "42.328687,-83.046697");
-		stationAddresses.put("10", "42.325211,-83.051361");
-		stationAddresses.put("11", "42.327938,-83.049715");
-		stationAddresses.put("12", "42.329550,-83.051051");
-		stationAddresses.put("13", "42.331344,-83.052163");
+		stationAddresses.put("Times Square", "42.333665,-83.052125");
+		stationAddresses.put("Grand Circus Park", "42.335855,-83.050510");
+		stationAddresses.put("Broadway", "42.335437,-83.048204");
+		stationAddresses.put("Cadillac Center", "42.333766,-83.046394");
+		stationAddresses.put("Greektown", "42.334909,-83.042425");
+		stationAddresses.put("Bricktown", "42.333282,-83.041168");
+		stationAddresses.put("Renaissance Center", "42.330147,-83.040208");
+		stationAddresses.put("Millender Center", "42.330250,-83.041995");
+		stationAddresses.put("Financial District", "42.328687,-83.046697");
+		stationAddresses.put("Joe Louis Arena", "42.325211,-83.051361");
+		stationAddresses.put("Cobo Center", "42.327938,-83.049715");
+		stationAddresses.put("Fort Cass", "42.329550,-83.051051");
+		stationAddresses.put("Michigan Ave.", "42.331344,-83.052163");
 
 //		 stationAddresses.put("1", "390 Grand River, Detroit, MI");
 //		 stationAddresses.put("2", "9 Park Street, Detroit, MI");
