@@ -63,12 +63,6 @@ public class PizzaServlet extends HttpServlet {
 			locations = JsonObjectArray.getLocationArray(googlePlaces);
 			System.out.println(googlePlaces);
 			request.setAttribute("location", locations);
-<<<<<<< HEAD
-
-		
-
-=======
->>>>>>> master
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -90,23 +84,6 @@ public class PizzaServlet extends HttpServlet {
 		stationAddresses.put("Cobo Center", "42.327938,-83.049715");
 		stationAddresses.put("Fort Cass", "42.329550,-83.051051");
 		stationAddresses.put("Michigan Ave.", "42.331344,-83.052163");
-<<<<<<< HEAD
-
-//		 stationAddresses.put("1", "390 Grand River, Detroit, MI");
-//		 stationAddresses.put("2", "9 Park Street, Detroit, MI");
-//		 stationAddresses.put("3", "150 John R St, Detroit, MI");
-//		 stationAddresses.put("4", "170 Gratiot Ave, Detroit, MI");
-//		 stationAddresses.put("5", "1150 Beaubien St, Detroit, MI 48226");
-//		 stationAddresses.put("6", "700 Beaubien St, Detroit, MI");
-//		 stationAddresses.put("7", "400 East Jefferson Ave., Detroit, MI");
-//		 stationAddresses.put("8", "333 E. Jefferson Ave., Detroit, MI");
-//		 stationAddresses.put("9", "133 W.Larned, Detroit, MI");
-//		 stationAddresses.put("10", "600 Civic Center Drive, Detroit, MI");
-//		 stationAddresses.put("11", "1 Washington Blvd., Detroit, MI");
-//		 stationAddresses.put("12", "711 Cass Ave., Detroit, MI");
-//		 stationAddresses.put("13", "1220 Cass Ave., Detroit, MI");
-=======
->>>>>>> master
 		return stationAddresses;
 	}
 

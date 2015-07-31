@@ -1,7 +1,7 @@
 public class Location {
 	private String name;
 	private String address;
-	private String place_id;
+	private String id;
 	private double lat;
 	private double lng;
 
@@ -17,11 +17,11 @@ public class Location {
 	public void setAddress(String formatted_address) {
 		this.address = formatted_address;
 	}
-	public String getPlaceId() {
-		return place_id;
+	public String getId() {
+		return id;
 	}
-	public void setPlaceId(String id) {
-		this.place_id = id;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public double getLat() {
 		return lat;
