@@ -11,6 +11,16 @@
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
 <title>Your adventure awaits!</title>
+<script src="https://apis.google.com/js/platform.js" async defer>
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail());
+	}
+</script>
+<meta name="google-signin-client_id" content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 </head>
 <body>
   <div id="map">
@@ -34,17 +44,22 @@
   </div>
   
   <div class="locations">
-    
+    <h2>Results:</h2>
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
-           <c:out value="${location.address}" /></p>
+           <c:out value="${location.address}" /><br>
+           Open now: <c:out value="${location.isOpen}"/></p>
+           <form action="AddFavorite" method="post">
+           <label>&nbsp;</label>
+           <input type="submit" value="Add to Favorites" class="margin_left">
+           </form>
     </c:forEach>
     
   </div>
   
   <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
-    <select name="stationID" value="Grand Circus Park">
+    <select name="stationID">
     	<option value="Times Square">Times Square</option>
     	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
@@ -60,11 +75,30 @@
     	<option value="Michigan Ave.">Michigan Ave.</option>
     </select><br>
     <label>Keyword:</label>
-    <input type="text" name="keyword" value="" autofocus/><br>
+    <input type="text" name="keyword" value="${PizzaServlet.keyword }" autofocus/><br>
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
-  
-
+<p>Sign in securely with google to save favorite places!</p>
+<div class="g-signin2" data-onsuccess="onSignIn">
+<script>
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail());
+	}
+</script>	
+</div>
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
 </body>
-</html>
+</html>  

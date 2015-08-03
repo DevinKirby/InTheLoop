@@ -60,8 +60,8 @@ public class PizzaServlet extends HttpServlet {
 		ArrayList<Location> locations; 
 		try {
 			String googlePlaces = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=" + keyword + "&location=" + stationAddress + "&radius=300&key=AIzaSyAxC5yolZSd5G-UiQc70px_8cX0T09mqNs";
-			locations = JsonObjectArray.getLocationArray(googlePlaces);
 			System.out.println(googlePlaces);
+			locations = JsonObjectArray.getLocationArray(googlePlaces);
 			request.setAttribute("location", locations);
 		} catch (JSONException e) {
 			e.printStackTrace();

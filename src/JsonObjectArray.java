@@ -16,22 +16,26 @@ public class JsonObjectArray {
 			Location location = new Location();
 			location.setName(childJSONObject.getString("name"));
 			location.setAddress(childJSONObject.getString("vicinity"));
+			checkIfOpen(childJSONObject, location);
 			location.setId(childJSONObject.getString("id"));
 			location.setLat(jsonLocObj.getDouble("lat"));
 			location.setLng(jsonLocObj.getDouble("lng"));
 			locations.add(location);
 		}
 		return locations;
+	}
 
-//		 for (Location location : locations) {
-//		 System.out.println(location.getName());
-//		 System.out.println(location.getAddress());
-//		 System.out.println(location.getId());
-//		 System.out.println(location.getLat());
-//		 System.out.println(location.getLng());
-//		 System.out.println();
-//		 }
-
+	private static void checkIfOpen(JSONObject childJSONObject, Location location) throws JSONException {
+		if (!childJSONObject.has("opening_hours")) {
+			location.setIsOpen("Unknown");
+		} else {
+			JSONObject jsonOpeningHours = childJSONObject.getJSONObject("opening_hours");
+			if (jsonOpeningHours.getBoolean("open_now") == true) {
+				location.setIsOpen("Yes!");
+			} else if (jsonOpeningHours.getBoolean("open_now") == false) {
+				location.setIsOpen("No");
+			}
+		}
 	}
 
 }
