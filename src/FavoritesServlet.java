@@ -36,8 +36,9 @@ public class FavoritesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String locName = request.getParameter("name");
 		String locAddress = request.getParameter("address");
-		FavoritesDB.insertUser(locName, locAddress);
-		
+		FavoritesDB.insertUser("Devin", "123 Street st.");
+		System.out.println(locName);
+		System.out.println(locAddress);
 		String text = "Your user was Added!";
 
 	    response.setContentType("text/plain");  // Set content type of the response so that jQuery knows what it can expect.

@@ -28,7 +28,7 @@ public class FavoritesDB {
 	public static void insertUser(String name, String address){
 		try{
 		Connection conn = getConnection();
-		String query = " insert into User (LocationName, LocationAddress)"
+		String query = " insert into user (LocationName, LocationAddress)"
 				+ " values (?, ?)";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setString(1, name);

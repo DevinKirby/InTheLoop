@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <title>Your adventure awaits!</title>
 </head>
@@ -33,26 +34,30 @@
     </script>
   </div>
   
-  <div class="locations">
+  
+  
+  <div class="locations">  
     
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" />
+           
+           <input type="button" id="submit" value="Add to Favorites">
+           <div id="responsediv"></div></p>
+           
            <script>
-	$(document).ready(function() {  
-                $('#submit').click(function(event) {  
-                var locname=$(<c:out value="${location.name}" />);
-   		         var locaddress=$(<c:out value="${location.address}" />);   		         
-                 $.post('FavoritesServlet',{name:locname,
-                	 					address:locaddress},function(responseText) { 
-                        $('#responsediv').text(responseText);     
-                    });
-                });
-            });
+			 	$(document).ready(function() {  
+                 $('#submit').click(function(event) {   
+                  var locname='<c:out value="${location.name}"/>';
+   		          var locaddress='<c:out value="${location.address}"/>';   		         
+                  $.post('FavoritesServlet',{name:locname, 
+                 	 						 address:locaddress},function(responseText) {  
+                         $('#responsediv').text(responseText); 
+                     }); 
+                 }); 
+            }); 
 	</script>
-           <input type="button" id="submit" value="Add to Favorites"></p>
-           <div id="responsediv"></div>
-    </c:forEach>
+	</c:forEach>
     
   </div>
   
