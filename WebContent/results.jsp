@@ -37,10 +37,11 @@
   
   
   <div class="locations">  
-    
+    <h2>Results:</h2>
     <c:forEach items="${location}" var="location">
-           <b><c:out value="${location.name}" /></b><br>
-           <c:out value="${location.address}" />
+           <p><b><c:out value="${location.name}" /></b><br>
+           <c:out value="${location.address}" /><br>
+           Open now: <c:out value="${location.isOpen}"/></p>
            
            <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
            <div id="responsediv"></div>
@@ -86,7 +87,26 @@
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
-  
-
+<p>Sign in securely with google to save favorite places!</p>
+		<div class="g-signin2" data-onsuccess="onSignIn">
+<script>
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail());
+	}
+</script>	
+</div>
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
 </body>
 </html>
