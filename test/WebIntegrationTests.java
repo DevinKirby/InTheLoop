@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import net.sourceforge.jwebunit.junit.WebTester;
 
-public class PizzaMoverTests {
+public class WebIntegrationTests {
 	private WebTester tester;
 	
 	private WebTester setBaseUrl(String string) {
@@ -16,11 +16,15 @@ public class PizzaMoverTests {
 	@Before
 	public void prepare() {
 		tester = new WebTester();
-		tester = setBaseUrl("http://localhost:8080/test");
+		tester = setBaseUrl("http://localhost:8080/PizzaMoverGroupProject/");
 	}
 
 	@Test
 	public void shouldGetTimesSquareCoordinates() {
+		tester.beginAt("index.jsp");
+		tester.selectOption("stationID", "Times Square");
+		tester.submit();
+		
 		
 	}
 
