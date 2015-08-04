@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head><link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16"></head>
+<head><link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
+</head>
 <title>PizzaMover!</title>
 <h1>Welcome to the Grand Circus Pizza Mover!</h1>
 <h4>The application for the people mover.</h4>
