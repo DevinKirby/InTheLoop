@@ -4,6 +4,8 @@ public class Location {
 	private String id;
 	private double lat;
 	private double lng;
+	private String isOpen;
+//	private String rating;
 
 	public String getName() {
 		return name;
@@ -34,5 +36,11 @@ public class Location {
 	}
 	public void setLng(double lng) {
 		this.lng = lng;
+	}
+	public String getIsOpen() {
+		return isOpen;
+	}
+	public void setIsOpen(String isOpen) {
+		this.isOpen = isOpen;
 	}
 }
