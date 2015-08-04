@@ -31,16 +31,28 @@
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
-
-<form action="DatabaseServlet" method="post">
-<p>Sign in to save results</p>
-<label>Email:</label>
-     <input type="text" name="email" value=""/><br>
-    <label>&nbsp;</label>
-<label>Name:</label>
-     <input type="text" name="name" value=""/><br>
-    <label>&nbsp;</label>
-    <input type="submit" value="Log in" class="margin_left">
-    </form>
-<p><c:out value= "${x}"/></p>
-
+<p>Sign in securely with google to save favorite places!</p>
+<div class="g-signin2" data-onsuccess="onSignIn">
+<script>
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail());
+	  console.log('Signed in as ' + profile.getName());
+	}
+</script>	
+</div>
+<p>Welcome back! You are logged in as ${profile.getName() }. Please click 'Sign out' if this is not you!</p>
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+</body>
+</html>
