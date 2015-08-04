@@ -50,10 +50,20 @@ function onSignIn(googleUser) {
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
            Open now: <c:out value="${location.isOpen}"/></p>
-           <form action="FavoritesServlet" method="post">
-           <label>&nbsp;</label>
-           <input type="submit" value="Add to Favorites" class="margin_left">
-           </form>
+           <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
+           <div id="responsediv"></div>
+           <script>
+			 	$(document).ready(function() {  
+                 $('#<c:out value="${location.id}" />').click(function(event) {   
+                  var locname= '<c:out value="${location.name}"/>';
+   		          var locaddress= '<c:out value="${location.address}"/>';   		         
+                  $.post('FavoritesServlet',{name:locname, 
+                 	 						 address:locaddress},function(responseText) {  
+                         $('#responsediv').text(responseText); 
+                     }); 
+                 }); 
+            }); 
+	</script>
     </c:forEach>
     
   </div>
