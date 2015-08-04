@@ -1,24 +1,19 @@
-import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 //import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Driver;
 
 public class FavoritesDB {
 	public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://localhost:3306/userdb";
+	public static final String URL = "jdbc:mysql://localhost:3306/pizzauser";
 	public static final String USER = "root";
 	public static final String PASSWORD = "DCKaug15";
 
-	public static Connection getConnection() {
+	public static Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Connection conn = null;
 		try {
+			Class.forName(DRIVER_CLASS).newInstance();
 			conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		} catch (SQLException e) {
 			System.out.println("Error: Unable to Connect to Database.");
@@ -28,7 +23,7 @@ public class FavoritesDB {
 	public static void insertUser(String name, String address){
 		try{
 		Connection conn = getConnection();
-		String query = " insert into user (LocationName, LocationAddress)"
+		String query = " insert into User (LocationName, LocationAddress)"
 				+ " values (?, ?)";
 		PreparedStatement ps = conn.prepareStatement(query);
 		ps.setString(1, name);

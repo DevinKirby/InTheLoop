@@ -2,15 +2,15 @@ DROP DATABASE IF EXISTS userdb;
 CREATE DATABASE `userdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE userdb;
 
-CREATE TABLE user (
+CREATE TABLE User (
  UserID INT NOT NULL AUTO_INCREMENT,
- LocationName VARCHAR(45) NULL COMMENT '',
- LocationAddress VARCHAR(45) NULL COMMENT '',
+ LocationName VARCHAR(45),
+ LocationAddress VARCHAR(45),
  
  PRIMARY KEY (`UserID`) 
  );
  
- INSERT INTO user 
+ INSERT INTO User 
   (LocationName, LocationAddress)
   
   VALUES
