@@ -47,17 +47,19 @@
            
            <script>
 			 	$(document).ready(function() {  
-                 $('#<c:out value="${location.id}" />').click(function(event) {   
-                  var locname= '<c:out value="${location.name}"/>';
-   		          var locaddress= '<c:out value="${location.address}"/>';   		         
+			 		$('#<c:out value="${location.id}" />').click(function(event) {    
+                  var locname='<c:out value="${location.name}"/>';
+   		          var locaddress='<c:out value="${location.address}"/>';   
+   		          var locLat ='<c:out value="${location.lat}"/>';
+   		          var locLong='<c:out value="${location.lng}"/>';
+   		          var locID='<c:out value="${location.id}"/>';
                   $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress},function(responseText) {  
+                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID},function(responseText) {  
                          $('#responsediv').text(responseText); 
                      }); 
                  }); 
             }); 
 	</script>
-	
 	</c:forEach>
     
   </div>
