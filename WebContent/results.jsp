@@ -1,6 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
@@ -49,7 +50,7 @@ function onSignIn(googleUser) {
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
            Open now: <c:out value="${location.isOpen}"/></p>
-           <form action="AddFavorite" method="post">
+           <form action="FavoritesServlet" method="post">
            <label>&nbsp;</label>
            <input type="submit" value="Add to Favorites" class="margin_left">
            </form>
