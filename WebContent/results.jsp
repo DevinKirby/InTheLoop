@@ -39,19 +39,22 @@
   <div class="locations">  
     
     <c:forEach items="${location}" var="location">
-           <p><b><c:out value="${location.name}" /></b><br>
+           <b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" />
            
-           <input type="button" id="submit" value="Add to Favorites">
-           <div id="responsediv"></div></p>
+           <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
+           <div id="responsediv"></div>
            
            <script>
 			 	$(document).ready(function() {  
-                 $('#submit').click(function(event) {   
+			 		$('#<c:out value="${location.id}" />').click(function(event) {    
                   var locname='<c:out value="${location.name}"/>';
-   		          var locaddress='<c:out value="${location.address}"/>';   		         
+   		          var locaddress='<c:out value="${location.address}"/>';   
+   		          var locLat ='<c:out value="${location.lat}"/>';
+   		          var locLong='<c:out value="${location.lng}"/>';
+   		          var locID='<c:out value="${location.id}"/>';
                   $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress},function(responseText) {  
+                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID},function(responseText) {  
                          $('#responsediv').text(responseText); 
                      }); 
                  }); 

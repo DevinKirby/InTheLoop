@@ -36,7 +36,10 @@ public class FavoritesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String locName = request.getParameter("name");
 		String locAddress = request.getParameter("address");
-		FavoritesDB.insertUser("Devin", "123 Street st.");
+		String locLat = request.getParameter("lat");
+		String locLng = request.getParameter("lng"); 
+		String locID = request.getParameter("id"); 
+		FavoritesDB.insertUser(locName, locAddress, locLat, locLng, locID);
 		System.out.println(locName);
 		System.out.println(locAddress);
 		String text = "Your user was Added!";
