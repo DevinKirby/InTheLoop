@@ -14,7 +14,7 @@
 
 <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
-    <select name="stationID">
+    <select name="stationID" value="Grand Circus Park">
     	<option value="Times Square">Times Square</option>
     	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
@@ -59,5 +59,3 @@ function onSignIn(googleUser) {
 </script>
 </body>
 </html>
-
-

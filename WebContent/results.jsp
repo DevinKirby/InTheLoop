@@ -44,33 +44,40 @@ function onSignIn(googleUser) {
     </script>
   </div>
   
-  <div class="locations">
+  
+  
+  <div class="locations">  
     <h2>Results:</h2>
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
            Open now: <c:out value="${location.isOpen}"/></p>
+           
            <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
            <div id="responsediv"></div>
+           
            <script>
 			 	$(document).ready(function() {  
-                 $('#<c:out value="${location.id}" />').click(function(event) {   
-                  var locname= '<c:out value="${location.name}"/>';
-   		          var locaddress= '<c:out value="${location.address}"/>';   		         
+			 		$('#<c:out value="${location.id}" />').click(function(event) {    
+                  var locname='<c:out value="${location.name}"/>';
+   		          var locaddress='<c:out value="${location.address}"/>';   
+   		          var locLat ='<c:out value="${location.lat}"/>';
+   		          var locLong='<c:out value="${location.lng}"/>';
+   		          var locID='<c:out value="${location.id}"/>';
                   $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress},function(responseText) {  
+                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID},function(responseText) {  
                          $('#responsediv').text(responseText); 
                      }); 
                  }); 
             }); 
 	</script>
-    </c:forEach>
+	</c:forEach>
     
   </div>
   
   <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
-    <select name="stationID">
+    <select name="stationID" value="Grand Circus Park">
     	<option value="Times Square">Times Square</option>
     	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
@@ -86,12 +93,12 @@ function onSignIn(googleUser) {
     	<option value="Michigan Ave.">Michigan Ave.</option>
     </select><br>
     <label>Keyword:</label>
-    <input type="text" name="keyword" value="${PizzaServlet.keyword }" autofocus/><br>
+    <input type="text" name="keyword" value="" autofocus/><br>
     <label>&nbsp;</label>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
 <p>Sign in securely with google to save favorite places!</p>
-<div class="g-signin2" data-onsuccess="onSignIn">
+		<div class="g-signin2" data-onsuccess="onSignIn">
 <script>
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
@@ -112,4 +119,4 @@ function onSignIn(googleUser) {
   }
 </script>
 </body>
-</html>  
+</html>
