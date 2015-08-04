@@ -16,7 +16,7 @@
     <label class="pad_top">Station:</label>
     <select name="stationID">
     	<option value="Times Square">Times Square</option>
-    	<option value selected="Grand Circus Park">Grand Circus Park</option>
+    	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
     	<option value="Cadillac Center">Cadillac Center</option>
     	<option value="Greektown">Greektown</option>
