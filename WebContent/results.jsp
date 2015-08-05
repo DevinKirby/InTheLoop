@@ -72,8 +72,10 @@ function onSignIn(googleUser) {
             }); 
 	</script>
 	</c:forEach>
-    
   </div>
+  <form action="FavoritesServlet" method="get">
+  	<button type="submit">View Favorites</button>
+  </form><br>
   
   <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
