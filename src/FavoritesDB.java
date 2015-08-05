@@ -7,14 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 //import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Driver;
 
 public class FavoritesDB {
 	public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
-	public static final String URL = "jdbc:mysql://localhost:8889/pizzauser";
+	public static final String URL = "jdbc:mysql://localhost:3306/pizzauser";
 	public static final String USER = "root";
-	public static final String PASSWORD = "root";
+	public static final String PASSWORD = "DCKaug15";
 
 	public static Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Connection conn = null;
@@ -45,6 +48,40 @@ public class FavoritesDB {
 		catch (Exception e){
 			System.out.println("Got an exception!");
 		}
+	}
+	public static List<Location> getFavorites() throws InstantiationException, IllegalAccessException {
+		Connection conn = null;
+		Statement statement = null;
+		ResultSet rs = null;
+		Location location = null;
+		List<Location> locations = new ArrayList<Location>();
+		String query = "SELECT * FROM User ";
+		try{
+			conn = getConnection();
+			statement = conn.createStatement();
+			rs = statement.executeQuery(query);
+			while(rs.next()){
+				location = new Location();
+				location.setName(rs.getString("LocationName"));
+				location.setAddress(rs.getString("LocationAddress"));
+				location.setLat(rs.getDouble("LocationLat"));
+				location.setLng(rs.getDouble("LocationLng"));
+				location.setId(rs.getString("LocationID"));
+				locations.add(location);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			System.out.println("Error: Unable to Connect to Database.");
+			e.printStackTrace();
+		} finally{
+			if(conn != null){
+				try{
+					conn.close();
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+			}
+		}
+		return locations;
 	}
 
 }
