@@ -62,7 +62,11 @@ public class PizzaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String gmail = request.getParameter("gmail");
+//		if(gmail.equalsIgnoreCase("")){
+//			gmail = "null";
+//		}
 		System.out.println(gmail);
+		
 		String keyword = request.getParameter("keyword");
 		String stationID = request.getParameter("stationID");
 		keyword = insertHTMLSpaces(keyword);

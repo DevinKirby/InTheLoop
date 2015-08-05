@@ -10,16 +10,8 @@
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
-function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail());
-	}
 </script>
 <meta name="google-signin-client_id" content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 </head>
@@ -97,6 +89,7 @@ function onSignIn(googleUser) {
     <label>Keyword:</label>
     <input type="text" name="keyword" value="" autofocus/><br>
     <label>&nbsp;</label>
+    <input type="hidden" id="hiddenfield" name="gmail"/>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
 <p>Sign in securely with google to save favorite places!</p>
@@ -108,6 +101,7 @@ function onSignIn(googleUser) {
 	  console.log('Name: ' + profile.getName());
 	  console.log('Image URL: ' + profile.getImageUrl());
 	  console.log('Email: ' + profile.getEmail());
+	  document.getElementById("hiddenfield").value=profile.getEmail();
 	}
 </script>	
 </div>
