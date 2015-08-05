@@ -39,6 +39,7 @@ public class FavoritesServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		getServletContext().getRequestDispatcher("/favorites.jsp").forward(request, response);
 			
 		
 	}
