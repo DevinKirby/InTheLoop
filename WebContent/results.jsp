@@ -56,8 +56,9 @@
    		          var locLat ='<c:out value="${location.lat}"/>';
    		          var locLong='<c:out value="${location.lng}"/>';
    		          var locID='<c:out value="${location.id}"/>';
+   		          var gmail='<c:out value="${gmail}"/>';
                   $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID},function(responseText) {  
+                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID, gmail:gmail},function(responseText) {  
                          $('#responsediv').text(responseText); 
                      }); 
                  }); 
@@ -66,6 +67,7 @@
 	</c:forEach>
   </div>
   <form action="FavoritesServlet" method="get">
+  	<input type="hidden" id="hiddenfield" name="gmail"/>
   	<button type="submit">View Favorites</button>
   </form><br>
   

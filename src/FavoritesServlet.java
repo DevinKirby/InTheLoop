@@ -29,7 +29,8 @@ public class FavoritesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			List<Location> locations = FavoritesDB.getFavorites();
+			String email = request.getParameter("gmail");
+			List<Location> locations = FavoritesDB.getFavorites(email);
 			for (Location location : locations){
 				System.out.println(location.getName());
 				System.out.println(location.getId());
@@ -53,7 +54,8 @@ public class FavoritesServlet extends HttpServlet {
 		String locLat = request.getParameter("lat");
 		String locLng = request.getParameter("lng"); 
 		String locID = request.getParameter("id"); 
-		FavoritesDB.insertUser(locName, locAddress, locLat, locLng, locID);
+		String userEmail = request.getParameter("gmail");
+		FavoritesDB.insertUser(userEmail, locName, locAddress, locLat, locLng, locID);
 		System.out.println(locName);
 		System.out.println(locAddress);
 		String text = "Your user was Added!";

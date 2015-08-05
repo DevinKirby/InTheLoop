@@ -30,17 +30,18 @@ public class FavoritesDB {
 		}
 		return conn;
 	}
-	public static void insertUser(String name, String address, String locLat, String locLng, String locationID){
+	public static void insertUser(String email, String name, String address, String locLat, String locLng, String locationID){
 		try{
 		Connection conn = getConnection();
-		String query = " insert into User (LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
-				+ " values (?, ?, ?, ?, ?)";
+		String query = " insert into User (UserEmail, LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
+				+ " values (?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, name);
-		ps.setString(2, address);
-		ps.setString(3, locLat);
-		ps.setString(4, locLng);
-		ps.setString(5, locationID);
+		ps.setString(1, email);
+		ps.setString(2, name);
+		ps.setString(3, address);
+		ps.setString(4, locLat);
+		ps.setString(5, locLng);
+		ps.setString(6, locationID);
 		
 		ps.execute();
 		conn.close();		
@@ -49,13 +50,13 @@ public class FavoritesDB {
 			System.out.println("Got an exception!");
 		}
 	}
-	public static List<Location> getFavorites() throws InstantiationException, IllegalAccessException {
+	public static List<Location> getFavorites(String email) throws InstantiationException, IllegalAccessException {
 		Connection conn = null;
 		Statement statement = null;
 		ResultSet rs = null;
 		Location location = null;
 		List<Location> locations = new ArrayList<Location>();
-		String query = "SELECT * FROM User ";
+		String query = "SELECT * from pizzauser.user where UserEmail = '" + email + "'";
 		try{
 			conn = getConnection();
 			statement = conn.createStatement();
