@@ -36,42 +36,14 @@
     </script>
   </div>
   
-  
-  
   <div class="locations">  
     <h2>Results:</h2>
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
            Open now: <c:out value="${location.isOpen}"/></p>
-           
-           <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
-           <div id="responsediv"></div>
-           
-           <script>
-			 	$(document).ready(function() {  
-			 		$('#<c:out value="${location.id}" />').click(function(event) {    
-                  var locname='<c:out value="${location.name}"/>';
-   		          var locaddress='<c:out value="${location.address}"/>';   
-   		          var locLat ='<c:out value="${location.lat}"/>';
-   		          var locLong='<c:out value="${location.lng}"/>';
-   		          var locID='<c:out value="${location.id}"/>';
-   		          var gmail='<c:out value="${gmail}"/>';
-                  $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID, gmail:gmail},function(responseText) {  
-                         $('#responsediv').text(responseText); 
-                     }); 
-                 }); 
-            }); 
-	</script>
 	</c:forEach>
   </div>
- <!--  <form action="FavoritesServlet" method="get">
-  	<input type="hidden" id="hiddenfield" name="gmail"/>
-  	<button type="submit">fuck Favorites</button>
-  </form><br>
-  
-  <h1>CAN I SEE THIS?</h1> -->
   
   <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
@@ -96,7 +68,7 @@
     <input type="hidden" id="hiddenfield" name="gmail"/>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
-<p>HELLO</p>
+<br>
 		<div class="g-signin2" data-onsuccess="onSignIn">
 			<script>
 			function onSignIn(googleUser) {
