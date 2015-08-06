@@ -63,6 +63,7 @@ public class PizzaServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String gmail = request.getParameter("gmail");
 		request.setAttribute("gmail", gmail);
+		System.out.println(gmail);
 		String keyword = request.getParameter("keyword");
 		String stationID = request.getParameter("stationID");
 		request.setAttribute("leafletStationName", stationID);

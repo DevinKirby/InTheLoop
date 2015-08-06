@@ -91,7 +91,7 @@
     <label>Keyword:</label>
     <input type="text" name="keyword" value="" autofocus/><br>
     <label>&nbsp;</label>
-    <input type="hidden" id="hiddenfield" name="gmail"/>
+    <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
 <p>Sign in securely with google to save favorite places!</p>
@@ -105,7 +105,7 @@
 				  console.log('Name: ' + profile.getName());
 				  console.log('Image URL: ' + profile.getImageUrl());
 				  console.log('Email: ' + profile.getEmail());
-				  document.getElementById("hiddenfield").value=profile.getEmail();
+				  //document.getElementById("hiddenfield").value=profile.getEmail();
 				   
 				};
 			
