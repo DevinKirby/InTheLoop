@@ -18,7 +18,7 @@
 <body>
   <div id="map">
     <script type="text/javascript">
-    var map = L.map('map').setView([<c:out value="${stationCoords}" />], 16);
+    var map = L.map('map').setView([<c:out value="${leafletStationCoords}" />], 16);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
         maxZoom: 18,
@@ -26,8 +26,8 @@
         accessToken: 'pk.eyJ1IjoicGVvcGxlbW92ZXIiLCJhIjoiMGNiYzRjMGI2ZTgzNTNmZTE2ZDFmYmFlNjc2M2U1MGQifQ.53BJ0DQcyQiNeGh2jf-_pA'
     }).addTo(map);
     
-    var marker = L.marker([<c:out value="${stationCoords}" />]).addTo(map);
-    marker.bindPopup("<b>Hello, Java!</b><br>This is <c:out value="${stationName}" /> Station.").openPopup();
+    var marker = L.marker([<c:out value="${leafletStationCoords}" />]).addTo(map);
+    marker.bindPopup("<b>Hello, Java!</b><br>This is <c:out value="${leafletStationName}" /> Station.").openPopup();
     
     <c:forEach items="${location}" var="location">
     var marker = L.marker([<c:out value="${location.lat}" />, <c:out value="${location.lng}" />]).addTo(map);
@@ -43,7 +43,7 @@
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
-           Open now: <c:out value="${location.isOpen}"/></p>
+           Open now: <c:out value="${location.openStatus}"/></p>
            
            <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
            <div id="responsediv"></div>
@@ -98,20 +98,17 @@
 		<div class="g-signin2" data-onsuccess="onSignIn">
 			<script>
 			function onSignIn(googleUser) {
-				  var auth2 = gapi.auth2.getAuthInstance();
-				  auth2.onSignIn(googleUser).then(function(){
-				  //location.reload("/PizzaMoverGroupProject");
+				  //var auth2 = gapi.auth2.getAuthInstance();
+				  //auth2.onSignIn(googleUser).then(function(){
 				  var profile = googleUser.getBasicProfile();
 				  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 				  console.log('Name: ' + profile.getName());
 				  console.log('Image URL: ' + profile.getImageUrl());
 				  console.log('Email: ' + profile.getEmail());
-				  window.location.assign("index.jsp")
-				 // location.reload("/PizzaMoverGroupProject");
-				  document.getElementById("hiddenfield").value=profile.getEmail();s
+				  document.getElementById("hiddenfield").value=profile.getEmail();
 				   
-				});
-			}
+				};
+			
 			</script>	
 		</div>
 <a href="#" onclick="signOut();">Sign out</a>

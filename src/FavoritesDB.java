@@ -6,11 +6,6 @@ import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
-
-//import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Driver;
 
 public class FavoritesDB {
@@ -19,50 +14,54 @@ public class FavoritesDB {
 	public static final String USER = "root";
 	public static final String PASSWORD = "DCKaug15";
 
-	public static Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public static Connection getConnection() throws Exception {
 		Connection conn = null;
-		try {
-			Class.forName(DRIVER_CLASS).newInstance();
-			conn = DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Error: Unable to Connect to Database.");
-		}
+		Class.forName(DRIVER_CLASS).newInstance();
+		conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		return conn;
 	}
-	public static void insertUser(String email, String name, String address, String locLat, String locLng, String locationID){
-		try{
-		Connection conn = getConnection();
-		String query = " insert into User (UserEmail, LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
-				+ " values (?, ?, ?, ?, ?, ?)";
-		PreparedStatement ps = conn.prepareStatement(query);
-		ps.setString(1, email);
-		ps.setString(2, name);
-		ps.setString(3, address);
-		ps.setString(4, locLat);
-		ps.setString(5, locLng);
-		ps.setString(6, locationID);
-		
-		ps.execute();
-		conn.close();		
-		}
-		catch (Exception e){
+
+	public static void insertFavorite(String email, String name, String address,
+			String locLat, String locLng, String locationID) {
+		Connection conn = null;
+		try {
+			conn = getConnection();
+			String query = " insert into User (UserEmail, LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
+					+ " values (?, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, email);
+			ps.setString(2, name);
+			ps.setString(3, address);
+			ps.setString(4, locLat);
+			ps.setString(5, locLng);
+			ps.setString(6, locationID);
+
+			ps.execute();
+			
+		} catch (Exception e) {
 			System.out.println("Got an exception!");
+		}finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
-	public static List<Location> getFavorites(String email) throws InstantiationException, IllegalAccessException {
+
+	public static List<Location> getFavorites(String email) throws Exception {
 		Connection conn = null;
-		Statement statement = null;
-		ResultSet rs = null;
-		Location location = null;
 		List<Location> locations = new ArrayList<Location>();
-		String query = "SELECT * from pizzauser.user where UserEmail = '" + email + "'";
-		try{
+		String query = "SELECT * from pizzauser.user where UserEmail = '"
+				+ email + "'";
+		try {
 			conn = getConnection();
-			statement = conn.createStatement();
-			rs = statement.executeQuery(query);
-			while(rs.next()){
-				location = new Location();
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			while (rs.next()) {
+				Location location = new Location();
 				location.setName(rs.getString("LocationName"));
 				location.setAddress(rs.getString("LocationAddress"));
 				location.setLat(rs.getDouble("LocationLat"));
@@ -73,11 +72,11 @@ public class FavoritesDB {
 		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println("Error: Unable to Connect to Database.");
 			e.printStackTrace();
-		} finally{
-			if(conn != null){
-				try{
+		} finally {
+			if (conn != null) {
+				try {
 					conn.close();
-				} catch (SQLException e){
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}

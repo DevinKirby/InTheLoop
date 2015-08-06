@@ -41,7 +41,7 @@
     <c:forEach items="${location}" var="location">
            <p><b><c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
-           Open now: <c:out value="${location.isOpen}"/></p>
+           Open now: <c:out value="${location.openStatus}"/></p>
 	</c:forEach>
   </div>
   

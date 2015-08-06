@@ -4,10 +4,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JsonObjectArray {
-	public static ArrayList<Location> getLocationArray(String url) throws IOException, JSONException {
+public class GoogleResultsParser {
+	public static ArrayList<Location> getLocationResults(String keyword, String stationAddress)
+			throws IOException, JSONException {
 		ArrayList<Location> locations = new ArrayList<Location>();
-		JSONObject jsonObj = new JSONObject(URLJSONString.parseJSON(url));
+		JSONObject jsonObj = new JSONObject(GoogleLocationServiceClient.convertJSONResultsToString(keyword, stationAddress));
 		JSONArray jsonMainArr = jsonObj.getJSONArray("results");
 		for (int i = 0; i < jsonMainArr.length(); i++) {
 			JSONObject childJSONObject = jsonMainArr.getJSONObject(i);
@@ -25,15 +26,17 @@ public class JsonObjectArray {
 		return locations;
 	}
 
-	private static void checkIfOpen(JSONObject childJSONObject, Location location) throws JSONException {
+	private static void checkIfOpen(JSONObject childJSONObject,
+			Location location) throws JSONException {
 		if (!childJSONObject.has("opening_hours")) {
-			location.setIsOpen("Unknown");
+			location.setOpenStatus("Unknown");
 		} else {
-			JSONObject jsonOpeningHours = childJSONObject.getJSONObject("opening_hours");
+			JSONObject jsonOpeningHours = childJSONObject
+					.getJSONObject("opening_hours");
 			if (jsonOpeningHours.getBoolean("open_now") == true) {
-				location.setIsOpen("Yes!");
+				location.setOpenStatus("Yes!");
 			} else if (jsonOpeningHours.getBoolean("open_now") == false) {
-				location.setIsOpen("No");
+				location.setOpenStatus("No");
 			}
 		}
 	}
