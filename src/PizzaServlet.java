@@ -61,7 +61,12 @@ public class PizzaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//String url = "/results.jsp"; 
 		String gmail = request.getParameter("gmail");
+		/*if(gmail.equals("")){
+			url = "/unsignedResults.jsp"; 
+		}*/
+		
 		System.out.println(gmail);
 		request.setAttribute("gmail", gmail);
 		String keyword = request.getParameter("keyword");
@@ -85,7 +90,11 @@ public class PizzaServlet extends HttpServlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		getServletContext().getRequestDispatcher("/results.jsp").forward(request, response);
+		String url = "/results.jsp"; 
+		if(gmail.equals("")){
+			url = "/unsignedResults.jsp"; 
+		}
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 
 	static String insertHTMLSpaces(String keyword) {

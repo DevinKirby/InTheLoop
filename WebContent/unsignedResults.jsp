@@ -66,10 +66,12 @@
 	</script>
 	</c:forEach>
   </div>
-  <form action="FavoritesServlet" method="get">
+ <!--  <form action="FavoritesServlet" method="get">
   	<input type="hidden" id="hiddenfield" name="gmail"/>
-  	<button type="submit">View Favorites</button>
+  	<button type="submit">fuck Favorites</button>
   </form><br>
+  
+  <h1>CAN I SEE THIS?</h1> -->
   
   <form action="PizzaServlet" method="post">
     <label class="pad_top">Station:</label>
@@ -94,24 +96,18 @@
     <input type="hidden" id="hiddenfield" name="gmail"/>
     <input type="submit" value="Let's find some fun!" class="margin_left">
 </form>
-<p>Sign in securely with google to save favorite places!</p>
+<p>HELLO</p>
 		<div class="g-signin2" data-onsuccess="onSignIn">
 			<script>
 			function onSignIn(googleUser) {
-				  var auth2 = gapi.auth2.getAuthInstance();
-				  auth2.onSignIn(googleUser).then(function(){
-				  //location.reload("/PizzaMoverGroupProject");
 				  var profile = googleUser.getBasicProfile();
 				  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 				  console.log('Name: ' + profile.getName());
 				  console.log('Image URL: ' + profile.getImageUrl());
 				  console.log('Email: ' + profile.getEmail());
-				  window.location.assign("index.jsp")
-				 // location.reload("/PizzaMoverGroupProject");
-				  document.getElementById("hiddenfield").value=profile.getEmail();s
-				   
-				});
-			}
+				  window.location.assign("index.jsp");
+				  document.getElementById("hiddenfield").value=profile.getEmail();
+				}
 			</script>	
 		</div>
 <a href="#" onclick="signOut();">Sign out</a>

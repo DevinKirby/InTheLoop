@@ -46,6 +46,7 @@ function onSignIn(googleUser) {
 	  console.log('Email: ' + profile.getEmail());
 	  document.getElementById("hiddenfield").value=profile.getEmail();
 	  console.log('Signed in as ' + profile.getName());
+	  //location.reload(true); 
 	}
 </script>	
 </div>
@@ -56,6 +57,7 @@ function onSignIn(googleUser) {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
+      location.reload(true); 
     });
   }
 </script>
