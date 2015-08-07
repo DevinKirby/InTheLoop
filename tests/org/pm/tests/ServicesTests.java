@@ -27,7 +27,7 @@ public class ServicesTests {
 		assertEquals(expected, GoogleLocationServiceClient.googleLocationsURLBuilder("42.333665,-83.052125", "pizza"));
 	}
 	@Test
-	public void shouldReturnParsedLocationDataObjects() throws IOException, JSONException{
+	public void shouldReturnNameOfFirstLocationObjectOfList() throws IOException, JSONException{
 		ArrayList<Location> locations = GoogleResultsParser.getLocationResults("pizza", "42.333665,-83.052125");
 		assertEquals("Bellacino's Pizza & Grinders", locations.get(0).getName());
 	}

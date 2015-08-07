@@ -12,7 +12,6 @@ public class GoogleLocationServiceClient {
 		String revisedKeyword = insertHTMLSpaces(keyword);
 		String googlePlaces = googleLocationsURLBuilder(stationAddress,
 				revisedKeyword);
-		System.out.println(googlePlaces);
 		StringBuilder jsonResult = buildJSONString(googlePlaces);
 		return jsonResult.toString();
 	}

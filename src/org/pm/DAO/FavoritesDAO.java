@@ -27,15 +27,8 @@ public class FavoritesDAO{
 		Connection conn = null;
 		try {
 			conn = getConnection();
-			String query = " insert into User (UserEmail, LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
-					+ " values (?, ?, ?, ?, ?, ?)";
-			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, email);
-			ps.setString(2, name);
-			ps.setString(3, address);
-			ps.setString(4, locLat);
-			ps.setString(5, locLng);
-			ps.setString(6, locationID);
+			PreparedStatement ps = generatePreparedStatement(email, name,
+					address, locLat, locLng, locationID, conn);
 
 			ps.execute();
 			
@@ -50,6 +43,21 @@ public class FavoritesDAO{
 				}
 			}
 		}
+	}
+
+	public static PreparedStatement generatePreparedStatement(String email,
+			String name, String address, String locLat, String locLng,
+			String locationID, Connection conn) throws SQLException {
+		String query = " insert into User (UserEmail, LocationName, LocationAddress, LocationLat, LocationLng, LocationID)"
+				+ " values (?, ?, ?, ?, ?, ?)";
+		PreparedStatement ps = conn.prepareStatement(query);
+		ps.setString(1, email);
+		ps.setString(2, name);
+		ps.setString(3, address);
+		ps.setString(4, locLat);
+		ps.setString(5, locLng);
+		ps.setString(6, locationID);
+		return ps;
 	}
 
 	public static List<Location> getFavorites(String email) throws Exception {
