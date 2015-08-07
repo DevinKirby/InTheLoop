@@ -1,16 +1,18 @@
+package org.pm.controllers;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
+import org.pm.model.Location;
+import org.pm.services.GoogleLocationServiceClient;
+import org.pm.services.GoogleResultsParser;
 
 /**
  * Servlet implementation class DummyServlet
@@ -43,7 +45,6 @@ public class PizzaServlet extends HttpServlet {
 	 */
 	public PizzaServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

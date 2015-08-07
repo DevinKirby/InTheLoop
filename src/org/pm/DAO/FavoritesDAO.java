@@ -1,3 +1,4 @@
+package org.pm.DAO;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,13 +7,13 @@ import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.mysql.jdbc.Driver;
+import org.pm.model.Location;
 
-public class FavoritesDB {
+public class FavoritesDAO{
 	public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/pizzauser";
 	public static final String USER = "root";
-	public static final String PASSWORD = "canal";
+	public static final String PASSWORD = "DCKaug15";
 
 	public static Connection getConnection() throws Exception {
 		Connection conn = null;

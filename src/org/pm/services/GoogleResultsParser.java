@@ -1,8 +1,11 @@
+package org.pm.services;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.pm.model.Location;
 
 public class GoogleResultsParser {
 	public static ArrayList<Location> getLocationResults(String keyword, String stationAddress)

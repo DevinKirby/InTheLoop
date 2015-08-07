@@ -1,3 +1,4 @@
+package org.pm.controllers;
 import java.io.IOException;
 import java.util.List;
 
@@ -6,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.pm.DAO.FavoritesDAO;
+import org.pm.model.Location;
 
 /**
  * Servlet implementation class FavoritesServlet
@@ -30,7 +34,7 @@ public class FavoritesServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String email = request.getParameter("gmail");
-			List<Location> locations = FavoritesDB.getFavorites(email);
+			List<Location> locations = FavoritesDAO.getFavorites(email);
 			for (Location location : locations) {
 				System.out.println(location.getName());
 				System.out.println(location.getId());
@@ -60,7 +64,7 @@ public class FavoritesServlet extends HttpServlet {
 		String locLng = request.getParameter("lng");
 		String locID = request.getParameter("id");
 		String userEmail = request.getParameter("gmail");
-		FavoritesDB.insertFavorite(userEmail, locName, locAddress, locLat, locLng,
+		FavoritesDAO.insertFavorite(userEmail, locName, locAddress, locLat, locLng,
 				locID);
 		System.out.println(locName);
 		System.out.println(locAddress);

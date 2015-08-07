@@ -1,3 +1,4 @@
+package org.pm.services;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -37,7 +38,7 @@ public class GoogleLocationServiceClient {
 		keyword = keyword.replaceAll("\\s+", "%20");
 		return keyword;
 	}
-	static String convertToLeafletCoordinates(String stationAddress){
+	public static String convertToLeafletCoordinates(String stationAddress){
 		String stationLat = stationAddress.substring(0, 9);
 		String stationLng = stationAddress.substring(10);
 		String leafletCoords = stationLat + ", " + stationLng;
