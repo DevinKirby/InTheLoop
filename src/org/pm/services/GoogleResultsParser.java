@@ -10,23 +10,39 @@ import org.pm.model.Location;
 public class GoogleResultsParser {
 	public static ArrayList<Location> getLocationResults(String keyword, String stationAddress)
 			throws IOException, JSONException {
-		ArrayList<Location> locations = new ArrayList<Location>();
 		JSONObject jsonObj = new JSONObject(GoogleLocationServiceClient.convertJSONResultsToString(keyword, stationAddress));
+		ArrayList<Location> locations = parseLocationsList(jsonObj);
+		return locations;
+	}
+
+	public static ArrayList<Location> parseLocationsList(JSONObject jsonObj)
+			throws JSONException {
+		ArrayList<Location> locations = new ArrayList<Location>();
 		JSONArray jsonMainArr = jsonObj.getJSONArray("results");
 		for (int i = 0; i < jsonMainArr.length(); i++) {
-			JSONObject childJSONObject = jsonMainArr.getJSONObject(i);
-			JSONObject jsonGeoObj = childJSONObject.getJSONObject("geometry");
-			JSONObject jsonLocObj = jsonGeoObj.getJSONObject("location");
 			Location location = new Location();
-			location.setName(childJSONObject.getString("name"));
-			location.setAddress(childJSONObject.getString("vicinity"));
+			JSONObject childJSONObject = jsonMainArr.getJSONObject(i);
+			parseLocationCoordinates(location, childJSONObject);
+			parseBasicInfo(location, childJSONObject);
 			checkIfOpen(childJSONObject, location);
-			location.setId(childJSONObject.getString("id"));
-			location.setLat(jsonLocObj.getDouble("lat"));
-			location.setLng(jsonLocObj.getDouble("lng"));
 			locations.add(location);
 		}
 		return locations;
+	}
+
+	public static void parseBasicInfo(Location location,
+			JSONObject childJSONObject) throws JSONException {
+		location.setName(childJSONObject.getString("name"));
+		location.setAddress(childJSONObject.getString("vicinity"));
+		location.setId(childJSONObject.getString("id"));
+	}
+
+	public static void parseLocationCoordinates(Location location,
+			JSONObject childJSONObject) throws JSONException {
+		JSONObject jsonGeoObj = childJSONObject.getJSONObject("geometry");
+		JSONObject jsonLocObj = jsonGeoObj.getJSONObject("location");
+		location.setLat(jsonLocObj.getDouble("lat"));
+		location.setLng(jsonLocObj.getDouble("lng"));
 	}
 
 	private static void checkIfOpen(JSONObject childJSONObject,

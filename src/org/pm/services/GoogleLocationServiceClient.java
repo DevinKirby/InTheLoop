@@ -10,18 +10,18 @@ public class GoogleLocationServiceClient {
 	public static String convertJSONResultsToString(String keyword, String stationAddress) throws IOException,
 			JSONException {
 		String revisedKeyword = insertHTMLSpaces(keyword);
-		String googlePlaces = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword="
-				+ revisedKeyword
-				+ "&location="
-				+ stationAddress
-				+ "&radius=300&key=AIzaSyAxC5yolZSd5G-UiQc70px_8cX0T09mqNs";
+		String googlePlaces = googleLocationsURLBuilder(stationAddress,
+				revisedKeyword);
 		System.out.println(googlePlaces);
+		StringBuilder jsonResult = buildJSONString(googlePlaces);
+		return jsonResult.toString();
+	}
+
+	public static StringBuilder buildJSONString(String googlePlaces)
+			throws IOException {
 		StringBuilder jsonResult = null;
 		try {
-			URL google = new URL(googlePlaces);
-			URLConnection yc = google.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					yc.getInputStream()));
+			BufferedReader in = createBufferedReaderFromGoogleURL(googlePlaces);
 			String inputLine;
 			jsonResult = new StringBuilder();
 			while ((inputLine = in.readLine()) != null) {
@@ -30,10 +30,29 @@ public class GoogleLocationServiceClient {
 		} catch (MalformedURLException e) {
 			System.out.println("MalformedURL");
 		}
-		return jsonResult.toString();
+		return jsonResult;
+	}
+
+	public static BufferedReader createBufferedReaderFromGoogleURL(
+			String googlePlaces) throws MalformedURLException, IOException {
+		URL google = new URL(googlePlaces);
+		URLConnection yc = google.openConnection();
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				yc.getInputStream()));
+		return in;
+	}
+
+	public static String googleLocationsURLBuilder(String stationAddress,
+			String revisedKeyword) {
+		String googlePlaces = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword="
+				+ revisedKeyword
+				+ "&location="
+				+ stationAddress
+				+ "&radius=300&key=AIzaSyAxC5yolZSd5G-UiQc70px_8cX0T09mqNs";
+		return googlePlaces;
 	}
 	
-	static String insertHTMLSpaces(String keyword) {
+	public static String insertHTMLSpaces(String keyword) {
 		keyword = keyword.trim();
 		keyword = keyword.replaceAll("\\s+", "%20");
 		return keyword;
