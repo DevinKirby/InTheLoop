@@ -50,8 +50,10 @@
   </div>
   
   
-  <div class="locations">  
-    	<table>
+  <div class="container">  
+  <div class="row">
+  <div class="col-md-12">
+    	<table class="table">
     		<tr>
     			<th>number</th>
     			<th>Name</th>
@@ -86,6 +88,8 @@
 				</script>
 			</c:forEach>
 	    </table>
+	    </div>
+	    </div>
 	    </div>
 	   <div id="responsediv"></div>
 	   
