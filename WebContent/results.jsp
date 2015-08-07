@@ -67,7 +67,7 @@
 	</c:forEach>
   </div>
   <form action="FavoritesServlet" method="get">
-  	<input type="hidden" id="hiddenfield" name="gmail"/>
+  	<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
   	<button type="submit">View Favorites</button>
   </form><br>
   
