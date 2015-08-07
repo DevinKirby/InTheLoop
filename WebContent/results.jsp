@@ -40,8 +40,8 @@
   
   <div class="locations">  
     <h2>Results:</h2>
-    <c:forEach items="${location}" var="location">
-           <p><b><c:out value="${location.name}" /></b><br>
+    <c:forEach items="${location}" var="location" varStatus="status">
+           <p><b>${status.count}. <c:out value="${location.name}" /></b><br>
            <c:out value="${location.address}" /><br>
            Open now: <c:out value="${location.openStatus}"/></p>
            
