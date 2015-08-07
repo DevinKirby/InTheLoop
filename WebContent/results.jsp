@@ -6,11 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="Leaflet.MakiMarkers.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
 </script>
@@ -48,18 +50,24 @@
   </div>
   
   
-  
   <div class="locations">  
-    <h2>Results:</h2>
-    <c:forEach items="${location}" var="location" varStatus="status">
-           <p><b>${status.count}. <c:out value="${location.name}" /></b><br>
-           <c:out value="${location.address}" /><br>
-           Open now: <c:out value="${location.openStatus}"/></p>
-           
-           <input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites">
-           <div id="responsediv"></div>
-           
-           <script>
+    	<table>
+    		<tr>
+    			<th>number</th>
+    			<th>Name</th>
+    			<th>Address</th>
+    			<th>Open Now?</th>
+    			<th>Add To Favorites</th>
+    		</tr>
+	    	<c:forEach items="${location}" var="location" varStatus="status">
+		    	<tr>
+		    		<td>${status.count}.</td>
+		    		<td><c:out value="${location.name}" /></td>
+		    		<td><c:out value="${location.address}" /></td>
+		    		<td><c:out value="${location.openStatus}" /></td>
+		    		<td><input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites"></td>
+		    	</tr>
+           	<script>
 			 	$(document).ready(function() {  
 			 		$('#<c:out value="${location.id}" />').click(function(event) {    
                   var locname='<c:out value="${location.name}"/>';
@@ -69,14 +77,20 @@
    		          var locID='<c:out value="${location.id}"/>';
    		          var gmail='<c:out value="${gmail}"/>';
                   $.post('FavoritesServlet',{name:locname, 
-                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID, gmail:gmail},function(responseText) {  
-                         $('#responsediv').text(responseText); 
+                 	 						 address:locaddress, lat:locLat, lng:locLong, id:locID, gmail:gmail},
+                 	 						 function(responseText) { 
+                 	 							 alert("Added to DB");
                      }); 
                  }); 
             }); 
-	</script>
-	</c:forEach>
-  </div>
+				</script>
+			</c:forEach>
+	    </table>
+	    </div>
+	   <div id="responsediv"></div>
+	   
+			
+	
   <form action="FavoritesServlet" method="get">
   	<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
   	<button type="submit">View Favorites</button>
