@@ -10,6 +10,7 @@
 <link rel="stylesheet"
 	href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="Leaflet.MakiMarkers.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>Your Favorites</title>
 </head>
@@ -18,11 +19,8 @@
 	<div id="map">
 		<script type="text/javascript">
 			var map = L.map('map').setView([ 42.3311, -83.0464 ], 15);
-			L
-					.tileLayer(
-							'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
-							{
-								attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
+							{	attribution : 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 								maxZoom : 18,
 								id : 'peoplemover.741040bc',
 								accessToken : 'pk.eyJ1IjoicGVvcGxlbW92ZXIiLCJhIjoiMGNiYzRjMGI2ZTgzNTNmZTE2ZDFmYmFlNjc2M2U1MGQifQ.53BJ0DQcyQiNeGh2jf-_pA'
@@ -31,12 +29,11 @@
 			//     var marker = L.marker([<c:out value="${stationCoords}" />]).addTo(map);
 			//     marker.bindPopup("<b>Hello, Java!</b><br>This is <c:out value="${stationName}" /> Station.").openPopup();
 
-			<c:forEach items="${location}" var="location">
+			<c:forEach items="${location}" var="location" varStatus="status">
+			var numberIcon = L.MakiMarkers.icon({icon: "${status.count}", color: "#0a0", size: "l"});
 			var marker = L.marker(
-					[ <c:out value="${location.lat}" />,
-							<c:out value="${location.lng}" /> ]).addTo(map);
-			marker
-					.bindPopup("<b><c:out value="${location.name}"/></b><br><c:out value="${location.address}"/> ");
+					[ <c:out value="${location.lat}" />, <c:out value="${location.lng}" /> ], {icon: numberIcon}).addTo(map);
+			marker.bindPopup("<b><c:out value="${location.name}"/></b><br><c:out value="${location.address}"/> ");
 			</c:forEach>
 		</script>
 	</div>
