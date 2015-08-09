@@ -9,17 +9,23 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="Styles/jquery.dataTables.css">
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <script src="Leaflet.MakiMarkers.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="jquery.dataTables.js"></script>
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
 </script>
 <meta name="google-signin-client_id" content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 </head>
+
 <body>
-  <div id="map">
+
+	<div class="container">
+  <div class="row" id="maprow">
+  <div class="col-md-12" id="map">
     <script type="text/javascript">
     var railIcon = L.MakiMarkers.icon({
         icon: "rail-light",
@@ -48,27 +54,47 @@
 	</c:forEach>    
     </script>
   </div>
+  </div>
+  </div>
+  
+  <script>
+  $(document).ready(function() {
+	    $('#tablescroll').dataTable( {
+	        "scrollY":        "200px",
+	        "scrollCollapse": true,
+	        "paging":         false,
+	        "info":     false,
+	        "bFilter": false,
+	        "bInfo": false
+	    } );
+	} );
+  </script>
   
   
   <div class="container">  
   <div class="row">
-  <div class="col-md-12">
-    	<table class="table">
-    		<tr>
-    			<th>number</th>
-    			<th>Name</th>
-    			<th>Address</th>
-    			<th>Open Now?</th>
-    			<th>Add To Favorites</th>
-    		</tr>
-	    	<c:forEach items="${location}" var="location" varStatus="status">
+  <div class="panel panel-default">
+  <div class="col-md-7">
+    	<table class="table" id="tablescroll" >
+    		<thead>
+	    		<tr>
+	    			<th></th>
+	    			<th>Name</th>
+	    			<th>Address</th>
+	    			<th>Open Now?</th>
+	    			<th>Add To Favorites</th>
+	    		</tr>
+    		</thead>
+    		<tbody>
+	    		<c:forEach items="${location}" var="location" varStatus="status">
 		    	<tr>
 		    		<td>${status.count}.</td>
 		    		<td><c:out value="${location.name}" /></td>
 		    		<td><c:out value="${location.address}" /></td>
 		    		<td><c:out value="${location.openStatus}" /></td>
-		    		<td><input type="button" id="<c:out value="${location.id}" />" value="Add to Favorites"></td>
+		    		<td><input type="button" id="<c:out value="${location.id}" />" class="btn btn-success" value="Add to Favorites"></td>
 		    	</tr>
+		    </tbody>
            	<script>
 			 	$(document).ready(function() {  
 			 		$('#<c:out value="${location.id}" />').click(function(event) {    
@@ -90,17 +116,14 @@
 	    </table>
 	    </div>
 	    </div>
-	    </div>
-	   <div id="responsediv"></div>
-	   
-			
-	
-  <form action="FavoritesServlet" method="get">
+
+<div class="col-md-5">
+	    <form action="FavoritesServlet" method="get">
   	<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
-  	<button type="submit">View Favorites</button>
+  	<button type="submit" class="btn btn-info btn-med btn-block">View Favorites</button>
   </form><br>
   
-  <form action="PizzaServlet" method="post">
+  <form action="PizzaServlet" class="form-horizontal" method="post">
     <label class="pad_top">Station:</label>
     <select name="stationID" value="Grand Circus Park">
     	<option value="Times Square">Times Square</option>
@@ -118,7 +141,7 @@
     	<option value="Michigan Ave.">Michigan Ave.</option>
     </select><br>
     <label>Keyword:</label>
-    <input type="text" name="keyword" value="" autofocus/><br>
+    <input type="text" name="keyword" class="form-control" value="" /><br>
     <label>&nbsp;</label>
     <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
     <input type="submit" value="Let's find some fun!" class="margin_left">
@@ -150,5 +173,13 @@
     });
   }
 </script>
+	    </div>
+	    </div>
+	    </div>
+	   <div id="responsediv"></div>
+	   
+			
+	
+  
 </body>
 </html>
