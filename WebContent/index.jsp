@@ -122,7 +122,7 @@
     <label>Keyword:</label>
     <input type="text" name="keyword" class="form-control" value="" /><br>
     </div>
-    <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
+    <input type="hidden" id="hiddenfield" name="gmail"/>
     <div class="form-group">
     <input type="submit" value="Let's find some fun!" class="margin_left">
     </div>
