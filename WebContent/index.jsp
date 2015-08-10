@@ -93,8 +93,40 @@
 <!-- // function $('.dropdown-toggle').dropdown() -->
 <!-- </script> -->
 
+<div class="col-md-5" id="searchcol">
+	    <form action="FavoritesServlet" method="get">
+  	<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
+  	<button type="submit" class="btn btn-info btn-med btn-block">View Favorites</button>
+  </form><br>
 
-
+  <form action="PizzaServlet" class="form-horizontal" method="post">
+  <div class="form-group">
+    <label class="pad_top">Station:</label>
+    <select name="stationID" class="form-control" value="Grand Circus Park">
+    	<option value="Times Square">Times Square</option>
+    	<option value="Grand Circus Park">Grand Circus Park</option>
+    	<option value="Broadway">Broadway</option>
+    	<option value="Cadillac Center">Cadillac Center</option>
+    	<option value="Greektown">Greektown</option>
+    	<option value="Bricktown">Bricktown</option>
+    	<option value="Renaissance Center">Renaissance Center</option>
+    	<option value="Millender Center">Millender Center</option>
+    	<option value="Financial District">Financial District</option>
+    	<option value="Joe Louis Arena">Joe Louis Arena</option>
+    	<option value="Cobo Center">Cobo Center</option>
+    	<option value="Fort Cass">Fort/Cass</option>
+    	<option value="Michigan Ave.">Michigan Ave.</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label>Keyword:</label>
+    <input type="text" name="keyword" class="form-control" value="" /><br>
+    </div>
+    <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
+    <div class="form-group">
+    <input type="submit" value="Let's find some fun!" class="margin_left">
+    </div>
+</form>
 
 
 
@@ -123,6 +155,9 @@ function onSignIn(googleUser) {
       location.reload(true); 
     });
   }
+  
+</div>
+</div>
 </script>
-</body>
+<</body>
 </html>
