@@ -62,8 +62,8 @@
 							class="form-control" value="" />
 					</div>
 					
-						<input type="hidden" id="hiddenfield" name="gmail" />
 						<div class="form-group">
+						<input type="hidden" id="hiddenfield" name="gmail" />
 							<button type="submit" class="btn btn-primary">Get in the
 								Loop</button>
 						</div>

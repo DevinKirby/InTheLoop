@@ -6,23 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
-<link rel="stylesheet"
-	href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-<link rel="stylesheet" type="text/css"
-	href="Styles/jquery.dataTables.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<link rel="stylesheet" type="text/css" href="Styles/jquery.dataTables.css">
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="Leaflet.MakiMarkers.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="jquery.dataTables.js"></script>
 <title>Your adventure awaits!</title>
-<script src="https://apis.google.com/js/platform.js" async defer>
-	
-</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
 	content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 </head>
@@ -157,12 +151,12 @@
 					</div>
 					<div class="form-group">
 						<label>Keyword:</label> <input type="text" name="keyword"
-							class="form-control" value="" /><br>
+							class="form-control" value="" />
 					</div>
 					<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail" />
 					<div class="form-group">
-						<input type="submit" value="Let's find some fun!"
-							class="margin_left">
+						<button type="submit" class="btn btn-primary">Get in the
+								Loop</button>
 					</div>
 				</form>
 				<p>Sign in securely with google to save favorite places!</p>
