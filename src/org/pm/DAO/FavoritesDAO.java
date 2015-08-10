@@ -1,4 +1,5 @@
 package org.pm.DAO;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.pm.model.Location;
 
-public class FavoritesDAO{
+public class FavoritesDAO {
 	public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
 	public static final String URL = "jdbc:mysql://localhost:3306/pizzauser";
 	public static final String USER = "root";
@@ -22,19 +23,18 @@ public class FavoritesDAO{
 		return conn;
 	}
 
-	public static void insertFavorite(String email, String name, String address,
-			String locLat, String locLng, String locationID) {
+	public static void insertFavorite(String email, String name,
+			String address, String locLat, String locLng, String locationID) {
+		String correctedName = fixPlaceName(name);
 		Connection conn = null;
 		try {
 			conn = getConnection();
-			PreparedStatement ps = generatePreparedStatement(email, name,
+			PreparedStatement ps = generatePreparedStatement(email, correctedName,
 					address, locLat, locLng, locationID, conn);
-
 			ps.execute();
-			
 		} catch (Exception e) {
 			System.out.println("Got an exception!");
-		}finally {
+		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
@@ -43,6 +43,17 @@ public class FavoritesDAO{
 				}
 			}
 		}
+	}
+
+	public static String fixPlaceName(String placeName) {
+		String newPlaceName = placeName;
+		if (newPlaceName.contains("&amp;")) {
+			newPlaceName = newPlaceName.replaceAll("&amp;", "&");
+		}
+		if (newPlaceName.contains("&#039;")) {
+			newPlaceName = newPlaceName.replaceAll("&#039;", "'");
+		}
+		return newPlaceName;
 	}
 
 	public static PreparedStatement generatePreparedStatement(String email,
@@ -92,5 +103,4 @@ public class FavoritesDAO{
 		}
 		return locations;
 	}
-
 }

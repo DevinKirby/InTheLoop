@@ -1,9 +1,9 @@
 #map {
   height: 300px;    
-  
 }
 #maprow{
 	height: 50%;
 }
-
-
+#searchcol{
+	padding-top: 10px;
+}
