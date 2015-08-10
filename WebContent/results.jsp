@@ -200,12 +200,12 @@
 					</div>
 					<div class="form-group">
 						<label>Keyword:</label> <input type="text" name="keyword"
-							class="form-control" value="" /><br>
+							class="form-control" value="" />
 					</div>
 					<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail" />
 					<div class="form-group">
-						<input type="submit" value="Let's find some fun!"
-							class="margin_left">
+						<button type="submit" class="btn btn-primary">Get in the
+								Loop</button>
 					</div>
 				</form>
 				<p>Sign in securely with google to save favorite places!</p>
