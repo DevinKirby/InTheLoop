@@ -163,6 +163,7 @@
 				  console.log('Image URL: ' + profile.getImageUrl());
 				  console.log('Email: ' + profile.getEmail());
 				  //document.getElementById("hiddenfield").value=profile.getEmail();
+				 
 				   
 				};
 			

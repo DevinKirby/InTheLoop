@@ -156,8 +156,8 @@ function onSignIn(googleUser) {
     });
   }
   
-</div>
-</div>
+// </div>
+// </div>
 </script>
-<</body>
+</body>
 </html>
