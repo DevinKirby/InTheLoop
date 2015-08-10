@@ -6,18 +6,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="Styles/jquery.dataTables.css">
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="Leaflet.MakiMarkers.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="jquery.dataTables.js"></script>
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
 </script>
 <meta name="google-signin-client_id" content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 </head>
 <body>
-  <div id="map">
+  
+  <div class="container">
+  <div class="row" id="maprow">
+  <div class="col-md-12" id="map">
     <script type="text/javascript">
     var railIcon = L.MakiMarkers.icon({
         icon: "rail-light",
@@ -47,19 +54,56 @@
 	</c:forEach>    
     </script>
   </div>
-  
-  <div class="locations">  
-    <h2>Results:</h2>
-    <c:forEach items="${location}" var="location" varStatus="status">
-           <p><b>${status.count}. <c:out value="${location.name}" /></b><br>
-           <c:out value="${location.address}" /><br>
-           Open now: <c:out value="${location.openStatus}"/></p>
-	</c:forEach>
+  </div>
   </div>
   
-  <form action="PizzaServlet" method="post">
+  <script>
+  $(document).ready(function() {
+	    $('#tablescroll').dataTable( {
+	        "scrollY":        "250px",
+	        "scrollCollapse": true,
+	        "paging":         false,
+	        "info":     false,
+	        "bFilter": false,
+	        "bInfo": false
+	    } );
+	} );
+  </script>
+  
+  <div class="container">  
+  <div class="row">
+  <div>
+  <div class="col-md-7">
+    	<table class="table" id="tablescroll" >
+    		<thead>
+	    		<tr>
+	    			<th></th>
+	    			<th>Name</th>
+	    			<th>Address</th>
+	    			<th>Open Now?</th>
+	    		</tr>
+    		</thead>
+    		<tbody>
+	    		<c:forEach items="${location}" var="location" varStatus="status">
+		    	<tr>
+		    		<td>${status.count}.</td>
+		    		<td><c:out value="${location.name}" /></td>
+		    		<td><c:out value="${location.address}" /></td>
+		    		<td><c:out value="${location.openStatus}" /></td>
+		    	</tr>
+		    </tbody>
+			</c:forEach>
+	    </table>
+	    </div>
+	    </div>
+  
+<div class="col-md-5" id="searchcol">
+	    
+  
+  <form action="PizzaServlet" class="form-horizontal" method="post">
+  <div class="form-group">
     <label class="pad_top">Station:</label>
-    <select name="stationID" value="Grand Circus Park">
+    <select name="stationID" class="form-control" value="Grand Circus Park">
     	<option value="Times Square">Times Square</option>
     	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
@@ -73,25 +117,32 @@
     	<option value="Cobo Center">Cobo Center</option>
     	<option value="Fort Cass">Fort/Cass</option>
     	<option value="Michigan Ave.">Michigan Ave.</option>
-    </select><br>
+    </select>
+    </div>
+    <div class="form-group">
     <label>Keyword:</label>
-    <input type="text" name="keyword" value="" autofocus/><br>
-    <label>&nbsp;</label>
-    <input type="hidden" id="hiddenfield" name="gmail"/>
+    <input type="text" name="keyword" class="form-control" value="" /><br>
+    </div>
+    <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
+    <div class="form-group">
     <input type="submit" value="Let's find some fun!" class="margin_left">
+    </div>
 </form>
-<br>
+<p>Sign in securely with google to save favorite places!</p>
 		<div class="g-signin2" data-onsuccess="onSignIn">
 			<script>
 			function onSignIn(googleUser) {
+				  //var auth2 = gapi.auth2.getAuthInstance();
+				  //auth2.onSignIn(googleUser).then(function(){
 				  var profile = googleUser.getBasicProfile();
 				  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 				  console.log('Name: ' + profile.getName());
 				  console.log('Image URL: ' + profile.getImageUrl());
 				  console.log('Email: ' + profile.getEmail());
-				  window.location.assign("index.jsp");
-				  document.getElementById("hiddenfield").value=profile.getEmail();
-				}
+				  //document.getElementById("hiddenfield").value=profile.getEmail();
+				   
+				};
+			
 			</script>	
 		</div>
 <a href="#" onclick="signOut();">Sign out</a>
@@ -104,5 +155,8 @@
     });
   }
 </script>
+	    </div>
+	    </div>
+	    </div>
 </body>
 </html>
