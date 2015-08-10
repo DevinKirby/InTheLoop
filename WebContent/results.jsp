@@ -60,7 +60,7 @@
   <script>
   $(document).ready(function() {
 	    $('#tablescroll').dataTable( {
-	        "scrollY":        "200px",
+	        "scrollY":        "250px",
 	        "scrollCollapse": true,
 	        "paging":         false,
 	        "info":     false,
@@ -73,7 +73,7 @@
   
   <div class="container">  
   <div class="row">
-  <div class="panel panel-default">
+  <div>
   <div class="col-md-7">
     	<table class="table" id="tablescroll" >
     		<thead>
@@ -117,15 +117,16 @@
 	    </div>
 	    </div>
 
-<div class="col-md-5">
+<div class="col-md-5" id="searchcol">
 	    <form action="FavoritesServlet" method="get">
   	<input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
   	<button type="submit" class="btn btn-info btn-med btn-block">View Favorites</button>
   </form><br>
   
   <form action="PizzaServlet" class="form-horizontal" method="post">
+  <div class="form-group">
     <label class="pad_top">Station:</label>
-    <select name="stationID" value="Grand Circus Park">
+    <select name="stationID" class="form-control" value="Grand Circus Park">
     	<option value="Times Square">Times Square</option>
     	<option value="Grand Circus Park">Grand Circus Park</option>
     	<option value="Broadway">Broadway</option>
@@ -139,12 +140,16 @@
     	<option value="Cobo Center">Cobo Center</option>
     	<option value="Fort Cass">Fort/Cass</option>
     	<option value="Michigan Ave.">Michigan Ave.</option>
-    </select><br>
+    </select>
+    </div>
+    <div class="form-group">
     <label>Keyword:</label>
     <input type="text" name="keyword" class="form-control" value="" /><br>
-    <label>&nbsp;</label>
+    </div>
     <input type="hidden" value="<c:out value="${gmail}"/>" name="gmail"/>
+    <div class="form-group">
     <input type="submit" value="Let's find some fun!" class="margin_left">
+    </div>
 </form>
 <p>Sign in securely with google to save favorite places!</p>
 		<div class="g-signin2" data-onsuccess="onSignIn">
@@ -176,7 +181,7 @@
 	    </div>
 	    </div>
 	    </div>
-	   <div id="responsediv"></div>
+	   
 	   
 			
 	
