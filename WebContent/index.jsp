@@ -68,6 +68,7 @@
 								Loop</button>
 						</div>
 				</form>
+				
 				<form action="FavoritesServlet" method="get">
 					<div class="form-group">
 						<input type="hidden" id="hiddenfield" name="gmail" />
