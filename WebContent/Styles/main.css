@@ -1,6 +1,6 @@
 body{
  background-image: url("peoplemoverpic2.jpg");
- background-size: cover;
+ background-size: 100%;
 }
 #london{
 	color:red;
@@ -13,4 +13,8 @@ body{
 }
 #searchcol{
 	padding-top: 10px;
+}
+
+.panel-transparent {
+	background: rgba(245, 245, 245, 0.6)!important;
 }
