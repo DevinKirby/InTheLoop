@@ -161,7 +161,7 @@
 																					},
 																					function(
 																							responseText) {
-																						alert("Added to DB");
+																						alert("This location has been added to your Favorites!");
 																					});
 																});
 											});

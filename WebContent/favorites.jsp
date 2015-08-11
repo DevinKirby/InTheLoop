@@ -82,7 +82,6 @@
 								<th></th>
 								<th>Name</th>
 								<th>Address</th>
-								<th>Open Now?</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -91,7 +90,6 @@
 									<td>${status.count}.</td>
 									<td><c:out value="${location.name}" /></td>
 									<td><c:out value="${location.address}" /></td>
-									<td><c:out value="${location.openStatus}" /></td>
 								</tr>
 						</tbody>
 						</c:forEach>
