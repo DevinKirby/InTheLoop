@@ -9,9 +9,7 @@
 	content="51763597782-00lt8ge8mum41c9li0cq8aurpgk6rftl.apps.googleusercontent.com">
 
 </head>
-<!-- <title>PizzaMover!</title> -->
-<!-- <h1>Welcome to the Grand Circus Pizza Mover!</h1> -->
-<!-- <h4>The application for the people mover.</h4> -->
+
 <body>
 
 	<nav class="navbar navbar-default">
@@ -29,14 +27,10 @@
 		</div>
 	</nav>
 
-
-
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4 panel panel-default panel-transparent">
 			<div class="col-md-12 panel-body" id="searchcol">
-
-
 
 				<form action="PizzaServlet" method="post">
 					<div class="form-group">
@@ -58,28 +52,21 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label>Keyword:</label> <input type="text" name="keyword"
-							class="form-control" value="" />
+						<label>Keyword:</label> <input type="text" name="keyword" class="form-control" value="" />
 					</div>
-					
-						<div class="form-group">
+					<div class="form-group">
 						<input type="hidden" id="hiddenfield" name="gmail" />
-							<button type="submit" class="btn btn-primary">Get in the
-								Loop</button>
-						</div>
+						<button type="submit" class="btn btn-primary">Get in the Loop</button>
+					</div>
 				</form>
 				
 				<form action="FavoritesServlet" method="get">
 					<div class="form-group">
-						<input type="hidden" id="hiddenfield" name="gmail" />
-						<button type="submit" class="btn btn-info  ">View
-							Favorites</button>
+						<input type="hidden" id="hiddenfield" name="gmail"/>
+						<button type="submit" value="submit" class="btn btn-info  ">View Favorites</button>
 					</div>
 				</form>
 			
-
-
-
 			<p>Sign in securely with google to save favorite places!</p>
 			<div class="g-signin2" data-onsuccess="onSignIn">
 				<script>
@@ -89,8 +76,7 @@
 						console.log('Name: ' + profile.getName());
 						console.log('Image URL: ' + profile.getImageUrl());
 						console.log('Email: ' + profile.getEmail());
-						document.getElementById("hiddenfield").value = profile
-								.getEmail();
+						document.getElementById("hiddenfield").value = profile.getEmail();
 						console.log('Signed in as ' + profile.getName());
 						//location.reload(true); 
 					}

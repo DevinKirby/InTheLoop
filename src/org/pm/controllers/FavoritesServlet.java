@@ -33,8 +33,9 @@ public class FavoritesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String email = request.getParameter("gmail");
-			List<Location> locations = FavoritesDAO.getFavorites(email);
+			String gmail = request.getParameter("gmail");
+			request.setAttribute("gmail", gmail);
+			List<Location> locations = FavoritesDAO.getFavorites(gmail);
 			for (Location location : locations) {
 				System.out.println(location.getName());
 				System.out.println(location.getId());
