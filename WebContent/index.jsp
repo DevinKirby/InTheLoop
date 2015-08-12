@@ -62,7 +62,7 @@
 				
 				<form action="FavoritesServlet" method="get">
 					<div class="form-group">
-						<input type="hidden" id="hiddenfield" name="gmail"/>
+						<input type="hidden" id="hiddenfav" name="gmail"/>
 						<button type="submit" value="submit" class="btn btn-info  ">View Favorites</button>
 					</div>
 				</form>
@@ -77,6 +77,7 @@
 						console.log('Image URL: ' + profile.getImageUrl());
 						console.log('Email: ' + profile.getEmail());
 						document.getElementById("hiddenfield").value = profile.getEmail();
+						document.getElementById("hiddenfav").value = profile.getEmail();
 						console.log('Signed in as ' + profile.getName());
 						//location.reload(true); 
 					}
