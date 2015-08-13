@@ -1,6 +1,7 @@
 body{
- background-image: url("peoplemoverpic2.jpg");
+ background-image: url("OptimizedPeopleMover.jpg");
  background-size: 100%;
+ overflow: hidden;
 }
 #london{
 	color:red;

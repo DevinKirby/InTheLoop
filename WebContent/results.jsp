@@ -6,18 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
-<link rel="stylesheet"
-	href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-<link rel="stylesheet" type="text/css"
-	href="Styles/jquery.dataTables.css">
+<link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<link rel="stylesheet" type="text/css"href="Styles/jquery.dataTables.css">
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="Leaflet.MakiMarkers.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="jquery.dataTables.js"></script>
 <title>Your adventure awaits!</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
@@ -129,39 +125,26 @@
 									<td><c:out value="${location.name}" /></td>
 									<td><c:out value="${location.address}" /></td>
 									<td><c:out value="${location.openStatus}" /></td>
-									<td><input type="button"
-										id="<c:out value="${location.id}" />" class="btn btn-success"
-										value="Add to Favorites"></td>
+									<td><input type="button" id="<c:out value="${location.id}" />" class="btn btn-success" value="Add to Favorites"></td>
 								</tr>
 						</tbody>
-						<script>
-							$(document)
-									.ready(
-											function() {
-												$(
-														'#<c:out value="${location.id}" />')
-														.click(
-																function(event) {
-																	var locname = '<c:out value="${location.name}"/>';
-																	var locaddress = '<c:out value="${location.address}"/>';
-																	var locLat = '<c:out value="${location.lat}"/>';
-																	var locLong = '<c:out value="${location.lng}"/>';
-																	var locID = '<c:out value="${location.id}"/>';
-																	var gmail = '<c:out value="${gmail}"/>';
-																	$
-																			.post(
-																					'FavoritesServlet',
-																					{
-																						name : locname,
-																						address : locaddress,
-																						lat : locLat,
-																						lng : locLong,
-																						id : locID,
-																						gmail : gmail
-																					},
-																					function(
-																							responseText) {
-																						alert("This location has been added to your Favorites!");
+			<script>
+				$(document).ready(function() {$('#<c:out value="${location.id}" />').click(function(event) {
+												var locname = '<c:out value="${location.name}"/>';
+												var locaddress = '<c:out value="${location.address}"/>';
+												var locLat = '<c:out value="${location.lat}"/>';
+												var locLong = '<c:out value="${location.lng}"/>';
+												var locID = '<c:out value="${location.id}"/>';
+												var gmail = '<c:out value="${gmail}"/>';
+																	$.post('FavoritesServlet',
+																		{	name : locname,
+																			address : locaddress,
+																			lat : locLat,
+																			lng : locLong,
+																			id : locID,
+																			gmail : gmail},
+																				function(responseText) {
+																					alert("This location has been added to your Favorites!");
 																					});
 																});
 											});

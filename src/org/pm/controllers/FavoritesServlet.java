@@ -32,8 +32,9 @@ public class FavoritesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String gmail = null;
 		try {
-			String gmail = request.getParameter("gmail");
+			gmail = request.getParameter("gmail");
 			request.setAttribute("gmail", gmail);
 			List<Location> locations = FavoritesDAO.getFavorites(gmail);
 			for (Location location : locations) {
@@ -48,7 +49,11 @@ public class FavoritesServlet extends HttpServlet {
 			System.out
 					.println("Oops! You broke it, or the database is unavailable.");
 		}
-		getServletContext().getRequestDispatcher("/favorites.jsp").forward(
+		String url = "/favorites.jsp";
+		if (gmail.equals("")) {
+			url = "/index.jsp";
+		}
+		getServletContext().getRequestDispatcher(url).forward(
 				request, response);
 
 	}

@@ -3,6 +3,7 @@
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
 <link rel="stylesheet" type="text/css" href="Styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="Styles/main.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>In The Loop</title>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
@@ -12,15 +13,19 @@
 
 <body>
 
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="index.jsp">In The Loop</a>
+				
 			</div>
 
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.jsp">Home</a></li>
+					<li class="active"><a href="#" id="favserv">Favorites</a></li>
+					
 
 				</ul>
 			</div>
@@ -78,8 +83,13 @@
 						console.log('Email: ' + profile.getEmail());
 						document.getElementById("hiddenfield").value = profile.getEmail();
 						document.getElementById("hiddenfav").value = profile.getEmail();
-						console.log('Signed in as ' + profile.getName());
-						//location.reload(true); 
+						var favgmail = profile.getEmail();																		
+						console.log('Signed in as ' + profile.getName());						
+						var a = document.getElementById('favserv');
+						  if (a) {
+						    a.href = "FavoritesServlet?gmail="+favgmail;						    
+						  }
+						  
 					}
 				</script>
 			</div>
