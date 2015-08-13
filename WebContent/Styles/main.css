@@ -1,6 +1,6 @@
 body{
  background-image: url("OptimizedPeopleMover.jpg");
- background-size: 100%;
+ background-size: cover;
  overflow: hidden;
 }
 #london{
@@ -18,4 +18,12 @@ body{
 
 .panel-transparent {
 	background: rgba(245, 245, 245, 0.6)!important;
+}
+#title{
+	text-align: center;
+	font-family: 'Yellowtail', cursive;
+	font-size: 78px;
+}
+.navbar-brand{
+	font-family: 'Yellowtail', cursive;
 }

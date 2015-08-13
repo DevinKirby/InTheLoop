@@ -3,7 +3,9 @@
 <link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
 <link rel="stylesheet" type="text/css" href="Styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="Styles/main.css">
+<link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>In The Loop</title>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta name="google-signin-client_id"
@@ -13,7 +15,8 @@
 
 <body>
 
-
+	<div class="container-fluid">
+	<div class="collapse navbar-collapse">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -24,14 +27,25 @@
 			<div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="index.jsp">Home</a></li>
-					<li class="active"><a href="#" id="favserv">Favorites</a></li>
+					<li><a href="#" id="favserv">Favorites</a></li>
 					
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-
+	</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12" id="title">
+				<p>In The Loop</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4 panel panel-default panel-transparent">
@@ -105,6 +119,7 @@
 				}
 			</script>
 		</div>
+	</div>
 	</div>
 	</div>
 </body>

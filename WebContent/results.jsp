@@ -10,12 +10,14 @@
 <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
 <link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 <link rel="stylesheet" type="text/css"href="Styles/jquery.dataTables.css">
+<link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="Leaflet.MakiMarkers.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="jquery.dataTables.js"></script>
-<title>Your adventure awaits!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In The Loop : Results</title>
 <script src="https://apis.google.com/js/platform.js" async defer>
 	
 </script>
@@ -24,7 +26,7 @@
 </head>
 
 <body>
-
+	<div class="container-fluid">
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -34,14 +36,16 @@
 		<div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.jsp">Home</a></li>
+				<li><a href="#" id="favserv">Favorites</a></li>
 
 			</ul>
 		</div>
 	</div>
 	</nav>
+	</div>
 
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row" id="maprow">
 			<div class="col-md-12" id="map">
 				<script type="text/javascript">
@@ -104,7 +108,7 @@
 	</script>
 
 
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div>
 				<div class="col-md-7">
@@ -202,8 +206,11 @@
 							console.log('Name: ' + profile.getName());
 							console.log('Image URL: ' + profile.getImageUrl());
 							console.log('Email: ' + profile.getEmail());
-							//document.getElementById("hiddenfield").value=profile.getEmail();
-
+							var favgmail = profile.getEmail();
+							var a = document.getElementById('favserv');
+							  if (a) {
+							    a.href = "FavoritesServlet?gmail="+favgmail;						    
+							  }
 						};
 					</script>
 				</div>
