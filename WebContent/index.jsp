@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
-<link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
+<link rel="icon" type="image/png" href="inTheLoop.ico" sizes="16x16">
 <link rel="stylesheet" type="text/css" href="Styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="Styles/main.css">
 <link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body id="index">
 
 	<div class="container-fluid">
 	<div class="collapse navbar-collapse">
@@ -32,6 +32,8 @@
 
 				</ul>
 			</div>
+			<ul class="nav navbar-nav navbar-right">
+        		<li><a href="about.jsp">About In The Loop</a></li>
 		</div>
 	</nav>
 	</div>
@@ -39,11 +41,17 @@
 	
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-12" id="title">
-				<p>In The Loop</p>
+			<div class="col-lg-12" >
+				<div class="row" >
+					<p id="title">In The Loop</p>
+				</div>
+				<div class="row">
+					<p id="desc">Detroit in Walking Distance</p>
+				</div>
 			</div>
 		</div>
-	</div>
+		</div>
+	
 	
 	<div class="container-fluid">
 	<div class="row">
@@ -53,7 +61,7 @@
 
 				<form action="PizzaServlet" method="post">
 					<div class="form-group">
-						<label class="pad_top">Station:</label> <select name="stationID"
+						<label class="pad_top">People Mover Station:</label> <select name="stationID"
 							class="form-control" value="Grand Circus Park">
 							<option value="Times Square">Times Square</option>
 							<option value="Grand Circus Park">Grand Circus Park</option>
@@ -86,7 +94,7 @@
 					</div>
 				</form>
 			
-			<p>Sign in securely with google to save favorite places!</p>
+			<p>Sign in with Google to save and view Favorites</p>
 			<div class="g-signin2" data-onsuccess="onSignIn">
 				<script>
 					function onSignIn(googleUser) {

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" type="image/png" href="pizzaSlice.ico" sizes="16x16">
+<link rel="icon" type="image/png" href="inTheLoop.ico" sizes="16x16">
 <link rel="stylesheet" type="text/css" href="Styles/resultsStyles.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
@@ -37,6 +37,9 @@
 				<li><a href="#" id="favserv">Favorites</a></li>
 
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+        		<li><a href="about.jsp">About In The Loop</a></li>
+        	</ul>
 		</div>
 	</div>
 	</nav>
@@ -105,7 +108,7 @@
 
 				<form action="PizzaServlet"  method="post">
 					<div class="form-group">
-						<label class="pad_top">Station:</label> <select name="stationID"
+						<label class="pad_top">People Mover Station:</label> <select name="stationID"
 							class="form-control" value="Grand Circus Park">
 							<option value="Times Square">Times Square</option>
 							<option value="Grand Circus Park">Grand Circus Park</option>
@@ -132,7 +135,7 @@
 								Loop</button>
 					</div>
 				</form>
-				<p>Sign in securely with google to save favorite places!</p>
+				<p>Sign in with Google to save and view Favorites</p>
 				<div class="g-signin2" data-onsuccess="onSignIn">
 					<script>
 						function onSignIn(googleUser) {

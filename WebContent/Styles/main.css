@@ -1,6 +1,11 @@
 body{
  background-image: url("OptimizedPeopleMover.jpg");
  background-size: cover;
+ 
+}
+#index{
+ background-image: url("OptimizedPeopleMover.jpg");
+ background-size: cover;
  overflow: hidden;
 }
 #london{
@@ -23,7 +28,24 @@ body{
 	text-align: center;
 	font-family: 'Yellowtail', cursive;
 	font-size: 78px;
+	margin-bottom: 0 !important;
+}
+.text-center{
+	font-family: 'Yellowtail', cursive;
+	font-size: 38px;
+}
+#aboutdesc{
+	text-align: center;
+	font-family: 'Yellowtail', cursive;
+	font-size: 28px;
 }
 .navbar-brand{
 	font-family: 'Yellowtail', cursive;
 }
+#desc{
+	text-align: center;
+	font-family: 'Yellowtail', cursive;
+	font-size: 38px;
+	margin-top: -15 !important;
+}
+
